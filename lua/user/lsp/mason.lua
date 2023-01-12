@@ -7,6 +7,11 @@ local servers = {
 	"bashls",
 	"jsonls",
 	"yamlls",
+  "emmet_ls",
+  "sqlls",
+  "svelte",
+  "lemminx",
+  "tailwindcss",
 }
 
 local settings = {
