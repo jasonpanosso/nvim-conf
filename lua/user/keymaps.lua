@@ -110,6 +110,9 @@ keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 -- undo tree
 keymap("n", "<leader>u", vim.cmd.UndotreeToggle)
 
+-- ChatGPT
+keymap('n', '<leader>cg', "<cmd>ChatGPT<CR>", { desc = 'Ask [C]hat [G]PT' })
+keymap('n', '<leader>ci', "<cmd>ChatGPTEditWithInstructions<CR>", { desc = 'Ask [C]hat GPT With [I]nstructions' })
 -- diffview
 -- keymap("n", "<leader>dv", ":DiffviewOpen<cr>", { desc = "Open Diffview" })
 -- keymap("n", "<leader>fh", ":DiffviewFileHistory %<cr>", { desc = "File History" })
