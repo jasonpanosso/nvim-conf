@@ -99,7 +99,7 @@ require("neo-tree").setup({
 			--["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
 			["C"] = "close_node",
 			["z"] = "close_all_nodes",
-			--["Z"] = "expand_all_nodes",
+			["Z"] = "expand_all_nodes",
 			["a"] = {
 				"add",
 				-- some commands may take optional config options, see `:h neo-tree-mappings` for details
@@ -155,8 +155,8 @@ require("neo-tree").setup({
 			}
 		},
 		filtered_items = {
-			visible = false, -- when true, they will just be displayed differently than normal items
-			hide_dotfiles = true,
+			visible = true, -- when true, they will just be displayed differently than normal items
+			hide_dotfiles = false,
 			hide_gitignored = true,
 			hide_hidden = true, -- only works on Windows for hidden files/directories
 			hide_by_name = {

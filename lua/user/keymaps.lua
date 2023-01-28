@@ -15,13 +15,6 @@ vim.g.mapleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
--- Normal --
--- Better window navigation
-keymap("n", "<M-h>", "<C-w>h", opts)
-keymap("n", "<M-j>", "<C-w>j", opts)
-keymap("n", "<M-k>", "<C-w>k", opts)
-keymap("n", "<M-l>", "<C-w>l", opts)
-
 -- Resize with arrows
 keymap("n", "<M-Up>", ":resize -2<CR>", opts)
 keymap("n", "<M-Down>", ":resize +2<CR>", opts)
@@ -36,6 +29,7 @@ keymap("n", "<M-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<leader>H", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
+keymap("n", "Q", "<nop>")
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- Better paste
@@ -101,8 +95,6 @@ keymap("n", "<C-u>", "<C-u>zz")
 keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
 
-keymap("n", "Q", "<nop>")
-
 keymap("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
@@ -116,3 +108,5 @@ keymap('n', '<leader>ci', "<cmd>ChatGPTEditWithInstructions<CR>", { desc = 'Ask 
 -- diffview
 -- keymap("n", "<leader>dv", ":DiffviewOpen<cr>", { desc = "Open Diffview" })
 -- keymap("n", "<leader>fh", ":DiffviewFileHistory %<cr>", { desc = "File History" })
+
+keymap('n', '<leader>nr', '<cmd>so $NVIMRC<CR>', { desc = ':so $NVIMRC' })
