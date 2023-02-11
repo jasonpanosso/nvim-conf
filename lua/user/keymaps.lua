@@ -21,10 +21,6 @@ keymap("n", "<M-Down>", ":resize +2<CR>", opts)
 keymap("n", "<M-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<M-Right>", ":vertical resize +2<CR>", opts)
 
--- Navigate buffers
--- keymap("n", "<S-l>", ":bnext<CR>", opts)
--- keymap("n", "<S-h>", ":bprevious<CR>", opts)
-
 -- Clear highlights
 keymap("n", "<leader>H", "<cmd>nohlsearch<CR>", opts)
 
@@ -83,6 +79,7 @@ keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
 keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
 keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
+keymap("n", "<leader>de", "<cmd>lua require'dapui'.eval()<cr>", opts)
 
 -- format 
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
@@ -102,9 +99,6 @@ keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 -- undo tree
 keymap("n", "<leader>u", vim.cmd.UndotreeToggle)
 
--- ChatGPT
-keymap('n', '<leader>cg', "<cmd>ChatGPT<CR>", { desc = 'Ask [C]hat [G]PT' })
-keymap('n', '<leader>ci', "<cmd>ChatGPTEditWithInstructions<CR>", { desc = 'Ask [C]hat GPT With [I]nstructions' })
 -- diffview
 -- keymap("n", "<leader>dv", ":DiffviewOpen<cr>", { desc = "Open Diffview" })
 -- keymap("n", "<leader>fh", ":DiffviewFileHistory %<cr>", { desc = "File History" })

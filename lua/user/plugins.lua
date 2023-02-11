@@ -43,6 +43,8 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
+  use({ "folke/neodev.nvim" })
+  require("neodev").setup({library = { plugins = { "nvim-dap-ui" }, types = true }})
 	-- My plugins here
 	use({ "wbthomason/packer.nvim", commit = "6afb67460283f0e990d35d229fd38fdc04063e0a" }) -- Have packer manage itself
 	use({ "nvim-lua/plenary.nvim", commit = "4b7e52044bbb84242158d977a50c4cbcd85070c7" }) -- Useful lua functions used by lots of plugins
@@ -101,7 +103,7 @@ return packer.startup(function(use)
 
 	-- personal
 	-- use({ "leafoftree/vim-svelte-plugin" })
-	use({ "prichrd/netrw.nvim" })
+  use({ "prichrd/netrw.nvim" })
 	use({ "theprimeagen/harpoon" })
 	use({ "mbbill/undotree" })
 	use({ "theprimeagen/vim-be-good" })
@@ -109,19 +111,6 @@ return packer.startup(function(use)
 	use({ "j-hui/fidget.nvim" })
 	use({ "MunifTanjim/nui.nvim" })
 	use({ "nvim-neo-tree/neo-tree.nvim" })
-	use({
-		"jackMort/ChatGPT.nvim",
-		config = function()
-			require("chatgpt").setup({
-				-- optional configuration
-			})
-		end,
-		requires = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
-	})
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then

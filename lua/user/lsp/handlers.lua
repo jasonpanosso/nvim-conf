@@ -51,44 +51,37 @@ M.setup = function()
   })
 end
 
-local nmap = function(keys, func, desc)
-  if desc then
-    desc = "LSP: " .. desc
-  end
-  vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
-end
-
 local function lsp_keymaps(bufnr)
-  local opts = { noremap = true, silent = true }
-  local keymap = vim.api.nvim_buf_set_keymap
-	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-	nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+  local apimap = vim.api.nvim_buf_set_keymap
+  local keymap = vim.keymap.set
+  keymap("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: [R]e[n]ame", buffer = bufnr })
+	keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: [C]ode [A]ction", buffer = bufnr })
 
-	nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-	nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-	nmap("<leader>gt", vim.lsp.buf.type_definition, "[G]oto [T]ype definition")
-	nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+	keymap("n", "gd", vim.lsp.buf.definition, { desc = "LSP: [G]oto [D]efinition", buffer = bufnr })
+	keymap("n", "gr", require("telescope.builtin").lsp_references, { desc = "LSP: [G]oto [R]eferences", buffer = bufnr })
+	keymap("n", "gI", vim.lsp.buf.implementation, { desc = "LSP: [G]oto [I]mplementation", buffer = bufnr })
+	keymap("n", "<leader>gt", vim.lsp.buf.type_definition, { desc = "LSP: [G]oto [T]ype definition", buffer = bufnr })
+	keymap("n", "<leader>ds", require("telescope.builtin").lsp_document_symbols, { desc = "LSP: [D]ocument [S]ymbols", buffer = bufnr })
+	keymap("n", "<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, { desc = "LSP: [W]orkspace [S]ymbols", buffer = bufnr })
 
 	-- See `:help K` for why this keymap
-	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-	nmap("<leader>k", vim.lsp.buf.signature_help, "Signature Documentation")
+	keymap("n", "K", vim.lsp.buf.hover, { desc = "LSP: Hover Documentation", buffer = bufnr })
+	keymap("n", "<leader>k", vim.lsp.buf.signature_help, { desc = "LSP: Signature Documentation", buffer = bufnr })
 
 	-- Lesser used LSP functionality
-	nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-	nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-	nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
-	nmap("<leader>wl", function()
+	keymap("n", "gD", vim.lsp.buf.declaration, { desc = "LSP: [G]oto [D]eclaration", buffer = bufnr })
+	keymap("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "LSP: [W]orkspace [A]dd Folder", buffer = bufnr })
+	keymap("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "LSP: [W]orkspace [R]emove Folder", buffer = bufnr })
+	keymap("n", "<leader>wl", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, "[W]orkspace [L]ist Folders")
+	end, { desc = "LSP: [W]orkspace [L]ist Folders", buffer = bufnr })
 
-  keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
-  keymap(bufnr, "n", "<leader>lI", "<cmd>Mason<cr>", opts)
-  keymap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
-  keymap(bufnr, "n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
-  keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+  apimap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Diagnostics: Open Float", noremap = true, silent = true })
+  apimap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", { desc = ":LspInfo", noremap = true, silent = true })
+  apimap(bufnr, "n", "<leader>lI", "<cmd>Mason<cr>", { desc = ":Mason", noremap = true, silent = true })
+  apimap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", { desc = "Diagnostics: Goto Next", noremap = true, silent = true })
+  apimap(bufnr, "n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", { desc = "Diagnostics: Goto Prev", noremap = true, silent = true })
+  apimap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", { desc = "Diagnostics: Add to Location List", noremap = true, silent = true })
 end
 
 M.on_attach = function(client, bufnr)
